@@ -40,6 +40,12 @@ Built as a hands-on project to learn practical data engineering skills — API i
 
 
 
+\## Dashboard
+
+Includes a Streamlit dashboard (`dashboard.py`) that visualizes the collected weather and air quality data as tables and line charts over time.
+
+
+
 \## Setup
 
 1\. Clone this repo
