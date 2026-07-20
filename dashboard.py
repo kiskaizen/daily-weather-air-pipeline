@@ -49,13 +49,27 @@ load_dotenv()
 
 st.title("My Weather & Air Quality Dashboard")
 
+#conn = snowflake.connector.connect(
+#    user=os.getenv("SNOWFLAKE_USER"),
+#    password=os.getenv("SNOWFLAKE_PASSWORD"),
+#    account=os.getenv("SNOWFLAKE_ACCOUNT"),
+#    warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
+#    database=os.getenv("SNOWFLAKE_DATABASE"),
+#    schema=os.getenv("SNOWFLAKE_SCHEMA")
+#)
+
+def get_secret(key):
+    if key in st.secrets:
+        return st.secrets[key]
+    return os.getenv(key)
+
 conn = snowflake.connector.connect(
-    user=os.getenv("SNOWFLAKE_USER"),
-    password=os.getenv("SNOWFLAKE_PASSWORD"),
-    account=os.getenv("SNOWFLAKE_ACCOUNT"),
-    warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
-    database=os.getenv("SNOWFLAKE_DATABASE"),
-    schema=os.getenv("SNOWFLAKE_SCHEMA")
+    user=get_secret("SNOWFLAKE_USER"),
+    password=get_secret("SNOWFLAKE_PASSWORD"),
+    account=get_secret("SNOWFLAKE_ACCOUNT"),
+    warehouse=get_secret("SNOWFLAKE_WAREHOUSE"),
+    database=get_secret("SNOWFLAKE_DATABASE"),
+    schema=get_secret("SNOWFLAKE_SCHEMA")
 )
 
 weather_data = pd.read_sql("SELECT * FROM weather_log ORDER BY log_date", conn)
