@@ -10,7 +10,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title("My Weather & Air Quality Dashboard")
+st.title("Weather & Air Quality Dashboard")
 
 weather_data = pd.read_csv("weather_log.csv", header=None,
     names=["date", "city", "temperature", "description"])
