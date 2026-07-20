@@ -128,6 +128,17 @@ conn = snowflake.connector.connect(
 weather_data = pd.read_sql("SELECT * FROM weather_log ORDER BY log_date", conn)
 aq_data = pd.read_sql("SELECT * FROM air_quality_log ORDER BY log_date", conn)
 
+
+
+st.subheader("City Comparison — Weather Summary")
+summary_data = pd.read_sql("SELECT * FROM WEATHER_DB.DBT_DEV.WEATHER_SUMMARY", conn)
+st.dataframe(summary_data)
+
+st.subheader("Station Comparison — Air Quality Summary")
+aq_summary_data = pd.read_sql("SELECT * FROM WEATHER_DB.DBT_DEV.AIR_QUALITY_SUMMARY", conn)
+st.dataframe(aq_summary_data)
+
+
 conn.close()
 
 city_list = weather_data["CITY"].unique()
@@ -151,4 +162,6 @@ st.dataframe(filtered_aq)
 
 st.subheader(f"PM2.5 Over Time — {selected_station}")
 st.line_chart(filtered_aq, x="LOG_DATE", y="PM25")
+
+
 
