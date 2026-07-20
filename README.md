@@ -39,6 +39,8 @@ A small automated data pipeline that fetches live weather and air quality data e
 Built as a hands-on project to learn practical data engineering skills — API integration, cloud data warehousing, automation, and secure handling of credentials.
 
 
+🔗 **[Live Dashboard]https://kiskaizen-weather-dashboard.streamlit.app/**
+
 
 \## Dashboard
 
